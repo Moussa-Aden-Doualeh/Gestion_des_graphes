@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Graph>
+   <Version Name="Grin4Win (C) 2003" Release="4.5 XML" Author="Vitaly Pechenkin" Country="RU"/>
+   <Attributes>
+      <KindID>3</KindID>
+      <Kind>dirNet</Kind>
+      <Name>ComputerNet.next</Name>
+      <NumberOfPoints>16</NumberOfPoints>
+      <Description></Description>
+      <GraphFont>
+         <Name>Arial</Name>
+         <Size>8</Size>
+         <Color>RGB(0,0,255)</Color>
+         <Style Bold="False" Italic="False" Underline="False" StrikeOut="False"/>
+      </GraphFont>
+      <DescriptionFont>
+         <Name>Courier New</Name>
+         <Size>10</Size>
+         <Color>RGB(8,0,0)</Color>
+         <Style Bold="False" Italic="False" Underline="False" StrikeOut="False"/>
+      </DescriptionFont>
+      <TableFont>
+         <Name>MS Sans Serif</Name>
+         <Size>9</Size>
+         <Color>RGB(8,0,0)</Color>
+         <Style Bold="False" Italic="False" Underline="False" StrikeOut="False"/>
+      </TableFont>
+      <MacroFont>
+         <Name>MS Sans Serif</Name>
+         <Size>9</Size>
+         <Color>RGB(8,0,0)</Color>
+         <Style Bold="False" Italic="False" Underline="False" StrikeOut="False"/>
+      </MacroFont>
+      <VisualPointOptions>
+         <Radius>10</Radius>
+         <ShowNumber>True</ShowNumber>
+         <FillPointByColor>False</FillPointByColor>
+         <NumberSize>8</NumberSize>
+         <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+      </VisualPointOptions>
+      <ShowAttrOptions EdgeLabel="False" EdgeName="False" EdgeWeight="False" EdgeFlow="False" PointName="True" PointTokens="False"/>
+   </Attributes>
+   <Points>
+      <Point>
+         <ID>1</ID>
+         <Name>Server 1</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="331" Y="32" Z="0"/>
+            <NamePositionID>6</NamePositionID>
+            <NamePosition>East</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>15</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>18</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>2</ID>
+         <Name>PC 2</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="161" Y="130" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>17</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>3</ID>
+         <Name>PC 3</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="274" Y="130" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>17</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>4</ID>
+         <Name>PC 4</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="381" Y="130" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>17</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>5</ID>
+         <Name>PC 5</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="494" Y="130" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>17</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>6</ID>
+         <Name>PC 6</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="609" Y="130" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>17</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>7</ID>
+         <Name>PC 1</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="48" Y="130" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>17</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>8</ID>
+         <Name>Disk Array 1</Name>
+         <Geometry>
+            <Kind>Square</Kind>
+            <KindID>1</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="331" Y="195" Z="0"/>
+            <NamePositionID>6</NamePositionID>
+            <NamePosition>East</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>11</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>16</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>9</ID>
+         <Name>Disk Array 2</Name>
+         <Geometry>
+            <Kind>Square</Kind>
+            <KindID>1</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="331" Y="348" Z="0"/>
+            <NamePositionID>6</NamePositionID>
+            <NamePosition>East</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>11</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>16</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>10</ID>
+         <Name>Mac 1</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="388" Y="437" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>15</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>11</ID>
+         <Name>Mac 2</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="501" Y="437" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>15</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>12</ID>
+         <Name>Mac 3</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="616" Y="437" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>15</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>13</ID>
+         <Name>PC 7</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="49" Y="437" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>17</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>14</ID>
+         <Name>PC 8</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="162" Y="437" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>17</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>15</ID>
+         <Name>PC 9</Name>
+         <Geometry>
+            <Kind>Circle</Kind>
+            <KindID>0</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="275" Y="437" Z="0"/>
+            <NamePositionID>4</NamePositionID>
+            <NamePosition>South</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>12</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>17</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+      <Point>
+         <ID>16</ID>
+         <Name>WWW Server</Name>
+         <Geometry>
+            <Kind>Square</Kind>
+            <KindID>1</KindID>
+            <Color>RGB(0,0,0)</Color>
+            <Coordinates X="331" Y="274" Z="0"/>
+            <NamePositionID>6</NamePositionID>
+            <NamePosition>East</NamePosition>
+         </Geometry>
+         <Weight>1</Weight>
+         <Tokens>1</Tokens>
+         <CustomOptions>True</CustomOptions>
+         <CustomPointOptions>
+            <Radius>15</Radius>
+            <ShowNumber>False</ShowNumber>
+            <FillPointByColor>False</FillPointByColor>
+            <NumberSize>8</NumberSize>
+            <ShowBorder Visible="True" ShowBorderByColor="False" Color="Default" DoubleBorder="False"/>
+            <UseImage>True</UseImage>
+            <ImageIndex>18</ImageIndex>
+         </CustomPointOptions>
+      </Point>
+   </Points>
+   <Edges>
+      <Edge>
+         <SourceID>1</SourceID>
+         <TargetID>8</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>0</KindID>
+            <Kind>Line</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>1</SourceID>
+         <TargetID>6</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>1</SourceID>
+         <TargetID>5</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>1</SourceID>
+         <TargetID>4</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>1</SourceID>
+         <TargetID>7</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>1</SourceID>
+         <TargetID>2</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>1</SourceID>
+         <TargetID>3</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>8</SourceID>
+         <TargetID>16</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>0</KindID>
+            <Kind>Line</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>8</SourceID>
+         <TargetID>9</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>8</KindID>
+            <Kind>Rect.Left</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>9</SourceID>
+         <TargetID>16</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>0</KindID>
+            <Kind>Line</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>9</SourceID>
+         <TargetID>12</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>9</SourceID>
+         <TargetID>11</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>9</SourceID>
+         <TargetID>10</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>9</SourceID>
+         <TargetID>13</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>9</SourceID>
+         <TargetID>14</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+      <Edge>
+         <SourceID>9</SourceID>
+         <TargetID>15</TargetID>
+         <Weight>1</Weight>
+         <Flow>0</Flow>
+         <Geometry>
+            <Color>RGB(0,0,0)</Color>
+            <KindID>5</KindID>
+            <Kind>V-H-V</Kind>
+            <NamePositionID>8</NamePositionID>
+            <NamePosition>Center</NamePosition>
+            <Pen PenStyleID="0" PenStyle="Solid" Width="1"/>
+         </Geometry>
+      </Edge>
+   </Edges>
+</Graph>

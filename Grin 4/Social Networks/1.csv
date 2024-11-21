@@ -1,0 +1,135 @@
+Id,Label
+1,Steve Sims
+2,Marat Ravilov
+3,Verna Norwood
+4,Robert Turner
+5,Michael Chilbert
+6,Lindsay Murray
+7,Rita Teodorakis
+8,Caron Hill
+9,Vici Myers
+10,Barbara Evans
+11,Brandy Thomas
+12,Donna Neukum
+13,Julia Goryunova
+14,Angie Harrington
+15,Sasha Kolpakov
+16,Alexey
+17,Maria
+18,Audrey
+19,Mary & Pol
+20,Marsha
+21,Anatoly Stepanovich
+22,Vasily
+23,Dana Von Voss
+24,Natasha Haratyan
+25,Jim Spoonts
+26,Vasily Dmitrievsky
+27,Brenda Morgan
+28,Tom Watson
+29,Floyd Simpson
+30,Bob Mimiaga
+31,Donna Smith
+32,Frank Banfill
+33,Brian Leicht
+34,Adam Richardson
+35,Jerry Falbo
+36,Steve Larson
+37,Mark Aspinwall
+38,Amy Rountree
+39,Corry Trowbridge
+40,Galina
+41,Herb Vincent
+42,Nina
+43,Marsha II
+44,Volodja
+45,David Jhonson
+46,Michail
+47,Lamar Jostes
+48,Damon English
+49,Victoria Cooksey
+50,Heidi Boerst
+51,Andrey
+52,Rose
+Source,Target,Type,Id,Label,Weight
+1,2,Undirected,12,No Name,1.7
+1,3,Undirected,13,No Name,1
+1,12,Undirected,112,No Name,0.1
+1,13,Undirected,113,No Name,1
+2,3,Undirected,23,No Name,1
+2,4,Undirected,24,No Name,0.5
+2,5,Undirected,25,No Name,0.5
+2,7,Undirected,27,No Name,0.5
+2,8,Undirected,28,No Name,0.5
+2,10,Undirected,210,No Name,1
+2,11,Undirected,211,No Name,1
+2,12,Undirected,212,No Name,1
+2,13,Undirected,213,No Name,0.5
+2,15,Undirected,215,No Name,1
+2,21,Undirected,221,No Name,1
+2,23,Undirected,223,No Name,1
+2,24,Undirected,224,No Name,1
+2,25,Undirected,225,No Name,0.25
+2,26,Undirected,226,No Name,0.3
+2,27,Undirected,227,No Name,1
+2,28,Undirected,228,No Name,0.2
+2,29,Undirected,229,No Name,1
+2,30,Undirected,230,No Name,1
+2,31,Undirected,231,No Name,1
+2,32,Undirected,232,No Name,0.3
+2,33,Undirected,233,No Name,1
+2,34,Undirected,234,No Name,1
+2,35,Undirected,235,No Name,0.5
+2,36,Undirected,236,No Name,0.5
+2,37,Undirected,237,No Name,0.5
+2,38,Undirected,238,No Name,1
+2,39,Undirected,239,No Name,1
+3,5,Undirected,35,No Name,1
+3,8,Undirected,38,No Name,1
+3,12,Undirected,312,No Name,0.25
+3,21,Undirected,321,No Name,0.5
+3,22,Undirected,322,No Name,1
+4,13,Undirected,413,No Name,1
+5,12,Undirected,512,No Name,1
+5,13,Undirected,513,No Name,1
+6,12,Undirected,612,No Name,1
+6,14,Undirected,614,No Name,1
+6,15,Undirected,615,No Name,1
+6,16,Undirected,616,No Name,1
+8,12,Undirected,812,No Name,0.2
+9,12,Undirected,912,No Name,1
+9,13,Undirected,913,No Name,1
+10,12,Undirected,1012,No Name,0.5
+10,13,Undirected,1013,No Name,1
+10,18,Undirected,1018,No Name,1
+10,19,Undirected,1019,No Name,1
+10,20,Undirected,1020,No Name,1
+10,21,Undirected,1021,No Name,1
+10,22,Undirected,1022,No Name,1
+11,12,Undirected,1112,No Name,0.3
+11,13,Undirected,1113,No Name,0.5
+11,17,Undirected,1117,No Name,0.5
+12,13,Undirected,1213,No Name,0.3
+12,15,Undirected,1215,No Name,0.5
+12,21,Undirected,1221,No Name,0.08
+12,22,Undirected,1222,No Name,1
+12,40,Undirected,1240,No Name,0.17
+12,41,Undirected,1241,No Name,1
+12,42,Undirected,1242,No Name,0.2
+12,44,Undirected,1244,No Name,0.5
+12,45,Undirected,1245,No Name,0.3
+12,46,Undirected,1246,No Name,1
+12,47,Undirected,1247,No Name,1
+12,48,Undirected,1248,No Name,1
+12,49,Undirected,1249,No Name,1
+12,50,Undirected,1250,No Name,1
+13,15,Undirected,1315,No Name,0.3
+13,19,Undirected,1319,No Name,1
+13,20,Undirected,1320,No Name,1
+13,21,Undirected,1321,No Name,0.14
+13,40,Undirected,1340,No Name,0.5
+13,42,Undirected,1342,No Name,1
+13,43,Undirected,1343,No Name,1
+13,46,Undirected,1346,No Name,1
+13,51,Undirected,1351,No Name,1
+13,52,Undirected,1352,No Name,1

@@ -1,0 +1,139 @@
+Id,Label
+1,Õ1
+2,Õ2
+3,Õ3
+4,Õ4
+5,Õ5
+6,Õ6
+7,Õ7
+8,Õ8
+9,Õ9
+10,Õ1O
+11,Õ11
+12,Õ12
+13,Õ13
+14,Õ14
+15,Õ15
+16,Õ16
+17,Õ17
+18,Õ18
+19,Õ19
+20,Õ2O
+21,Õ21
+22,Õ22
+23,Õ23
+24,Õ24
+25,Õ25
+26,Õ26
+27,Õ27
+28,Õ28
+29,Õ29
+30,Õ3O
+31,Õ31
+32,Õ32
+33,Õ33
+34,Õ34
+35,Õ35
+36,Õ36
+37,Õ37
+38,Õ38
+39,Õ39
+40,Õ4O
+Source,Target,Type,Id,Label,Weight
+2,1,Undirected,21,No Name,1
+3,1,Undirected,31,No Name,1
+4,1,Undirected,41,No Name,1
+4,3,Undirected,43,No Name,1
+5,1,Undirected,51,No Name,1
+5,4,Undirected,54,No Name,1
+6,1,Undirected,61,No Name,1
+6,4,Undirected,64,No Name,1
+7,2,Undirected,72,No Name,1
+8,4,Undirected,84,No Name,1
+9,21,Undirected,921,No Name,1
+10,19,Undirected,1019,No Name,1
+10,21,Undirected,1021,No Name,1
+10,37,Undirected,1037,No Name,1
+11,7,Undirected,117,No Name,1
+11,12,Undirected,1112,No Name,1
+12,13,Undirected,1213,No Name,1
+12,28,Undirected,1228,No Name,1
+12,36,Undirected,1236,No Name,1
+13,16,Undirected,1316,No Name,1
+13,17,Undirected,1317,No Name,1
+13,18,Undirected,1318,No Name,1
+13,19,Undirected,1319,No Name,1
+13,20,Undirected,1320,No Name,1
+13,21,Undirected,1321,No Name,1
+13,28,Undirected,1328,No Name,1
+13,36,Undirected,1336,No Name,1
+14,27,Undirected,1427,No Name,1
+14,35,Undirected,1435,No Name,1
+15,7,Undirected,157,No Name,1
+16,26,Undirected,1626,No Name,1
+16,31,Undirected,1631,No Name,1
+17,26,Undirected,1726,No Name,1
+17,31,Undirected,1731,No Name,1
+18,38,Undirected,1838,No Name,1
+18,39,Undirected,1839,No Name,1
+19,26,Undirected,1926,No Name,1
+19,31,Undirected,1931,No Name,1
+19,39,Undirected,1939,No Name,1
+20,26,Undirected,2026,No Name,1
+20,31,Undirected,2031,No Name,1
+21,31,Undirected,2131,No Name,1
+22,19,Undirected,2219,No Name,1
+22,20,Undirected,2220,No Name,1
+22,21,Undirected,2221,No Name,1
+22,25,Undirected,2225,No Name,1
+23,26,Undirected,2326,No Name,1
+23,34,Undirected,2334,No Name,1
+23,35,Undirected,2335,No Name,1
+24,23,Undirected,2423,No Name,1
+24,35,Undirected,2435,No Name,1
+25,23,Undirected,2523,No Name,1
+25,32,Undirected,2532,No Name,1
+26,25,Undirected,2625,No Name,1
+27,24,Undirected,2724,No Name,1
+27,26,Undirected,2726,No Name,1
+28,40,Undirected,2840,No Name,1
+29,36,Undirected,2936,No Name,1
+30,28,Undirected,3028,No Name,1
+30,39,Undirected,3039,No Name,1
+31,33,Undirected,3133,No Name,1
+31,34,Undirected,3134,No Name,1
+31,36,Undirected,3136,No Name,1
+31,40,Undirected,3140,No Name,1
+32,27,Undirected,3227,No Name,1
+32,28,Undirected,3228,No Name,1
+33,34,Undirected,3334,No Name,1
+33,35,Undirected,3335,No Name,1
+34,13,Undirected,3413,No Name,1
+34,39,Undirected,3439,No Name,1
+35,19,Undirected,3519,No Name,1
+35,22,Undirected,3522,No Name,1
+35,25,Undirected,3525,No Name,1
+35,31,Undirected,3531,No Name,1
+35,32,Undirected,3532,No Name,1
+35,34,Undirected,3534,No Name,1
+36,23,Undirected,3623,No Name,1
+36,24,Undirected,3624,No Name,1
+36,25,Undirected,3625,No Name,1
+37,9,Undirected,379,No Name,1
+37,27,Undirected,3727,No Name,1
+37,31,Undirected,3731,No Name,1
+37,32,Undirected,3732,No Name,1
+38,20,Undirected,3820,No Name,1
+38,21,Undirected,3821,No Name,1
+38,23,Undirected,3823,No Name,1
+39,20,Undirected,3920,No Name,1
+39,21,Undirected,3921,No Name,1
+39,22,Undirected,3922,No Name,1
+39,31,Undirected,3931,No Name,1
+40,5,Undirected,405,No Name,1
+40,6,Undirected,406,No Name,1
+40,7,Undirected,407,No Name,1
+40,13,Undirected,4013,No Name,1
+40,16,Undirected,4016,No Name,1
+40,19,Undirected,4019,No Name,1
+40,34,Undirected,4034,No Name,1
