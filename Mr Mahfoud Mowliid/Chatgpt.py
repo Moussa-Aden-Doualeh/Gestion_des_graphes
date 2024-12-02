@@ -258,6 +258,7 @@ def matrice_adjacence():
     # Affichage de la matrice d'adjacence avec les noms des sommets
     afficher_matrice_adjacente(matrice, "Matrice d'Adjacence", [sommets[0] for sommets in liste_sommets])
 # Fonction pour afficher les matrices dans le frame de droite
+
 def afficher_matrice_adjacente(matrice, titre, sommets):
     # Effacer l'ancienne matrice
     for widget in cadre_resultats.winfo_children():

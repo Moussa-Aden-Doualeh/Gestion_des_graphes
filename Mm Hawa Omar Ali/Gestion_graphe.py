@@ -4,9 +4,7 @@ from tkinter import * # pour importer le bibliotheque de l'interface graphique .
 from tkinter import simpledialog  as zone_dialogue # Pour les boîtes de dialogue de saisie
 from tkinter import messagebox as boite_message # Pour les gestions de messages d'erreur et notifications
 from tkinter import filedialog as dialogue_fichier  # Pour la boîte de dialogue "Ouvrir un fichier"
-
 from PIL import Image, ImageTk  # Importer Pillow pour la gestion des images
-
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -257,6 +255,7 @@ def matrice_adjacence():
     # Affichage de la matrice d'adjacence avec les noms des sommets
     afficher_matrice_adjacente(matrice, "Matrice d'Adjacence", [sommets[0] for sommets in liste_sommets])
 # Fonction pour afficher les matrices dans le frame de droite
+
 def afficher_matrice_adjacente(matrice, titre, sommets):
     # Effacer l'ancienne matrice
     for widget in cadre_resultats.winfo_children():
@@ -700,6 +699,7 @@ def creer_fenetre_principale(fenetre):
                                 menu=sous_menu_matrice_ma)
 
     menu_exe.add_command(label="Plus court chemin")
+    menu_exe.add_command(label="Parcours en profondeurs")
     menu_exe.add_command(label="Coloration")
     menu_edition.add_command(label="Graphe")
 

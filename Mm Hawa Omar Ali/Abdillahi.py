@@ -1,0 +1,2 @@
+sommets = []
+aretes = []

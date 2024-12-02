@@ -102,10 +102,6 @@ def retirer_sommet(canvas):
 
     canvas.bind("<Button-1>", lors_du_clic)
 
-# Liste des sommets et des arêtes
-liste_sommets = []
-arcs = []  # Contient des dictionnaires {'sommet1', 'sommet2', 'ligne', 'etiquette', 'texte'}
-etiquettes_arretes = []
 
 # Fonction pour ajouter une arête
 def ajouter_arrete(canvas):
