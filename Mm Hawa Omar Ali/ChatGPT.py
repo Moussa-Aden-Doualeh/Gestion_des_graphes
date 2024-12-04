@@ -1,3 +1,4 @@
+# importation des bibliotheques .
 import pickle  # Utiliser pickle pour sérialiser les données
 import os # pour interagir avec le systeme d'exploitation .
 from tkinter import * # pour importer le bibliotheque de l'interface graphique .
@@ -16,7 +17,7 @@ cercles = []  # Liste pour stocker les cercles dessinés
 textes_sommets = []  # Liste pour stocker les identifiants des textes des sommets
 etiquettes_arretes = []# Liste pour stocker les étiquettes des arêtes
 arcs = []  # Liste pour stocker les arêtes entre les sommets
-graphe_oriente = True  # Par défaut, considérons un graphe orienté. Changez-le si besoin.
+graphe_oriente = True  # Variable globale pour définir le type de graphe ,True pour orienté, False pour non orienté
 chemin_fichier = None  # Variable pour suivre si le fichier a déjà été enregistré et son chemin
 
 def incrementer_nom_sommet():
@@ -43,7 +44,6 @@ def calculer_extremite(x1, y1, x2, y2, rayon):
     from math import atan2, cos, sin
     angle = atan2(y2 - y1, x2 - x1)
     return x1 + rayon * cos(angle), y1 + rayon * sin(angle)
-
 
 def ajouter_sommet(canvas):
     global nom_sommet_courant
@@ -83,31 +83,40 @@ def retirer_sommet(canvas):
         x, y = event.x, event.y
         for i, (sommet, (sx, sy)) in enumerate(liste_sommets):
             if abs(sx - x) < 15 and abs(sy - y) < 15:  # Vérifier si le clic est sur un sommet
+                # Supprimer le sommet visuellement
                 canvas.delete(cercles[i])  # Supprimer le cercle du sommet
                 canvas.delete(textes_sommets[i])  # Supprimer le texte du sommet
 
-                # Supprimer toutes les arêtes associées à ce sommet
+                # Supprimer toutes les arêtes non orientées associées à ce sommet
                 arcs_a_supprimer = [arc for arc in arcs if sommet in (arc['sommet1'], arc['sommet2'])]
                 for arc in arcs_a_supprimer:
-                    # Supprimer la ligne de l'arête
-                    canvas.delete(arc['ligne'])
-                    # Supprimer l'étiquette de l'arête
-                    canvas.delete(arc['texte'])
-                    # Retirer l'arête de la liste des arcs
-                    arcs.remove(arc)
+                    canvas.delete(arc['ligne'])  # Supprimer la ligne de l'arête
+                    canvas.delete(arc['texte'])  # Supprimer l'étiquette de l'arête
+                    arcs.remove(arc)  # Retirer l'arête de la liste des arcs
 
-                # Supprimer le sommet de la liste et de la vue
-                del liste_sommets[i]  # Supprimer le sommet de la liste
-                del cercles[i]  # Supprimer le cercle de la liste
-                del textes_sommets[i]  # Supprimer le texte de la liste
+                # Supprimer tous les arcs orientés associés à ce sommet
+                arcs_orientes_a_supprimer = [arc_oriente for arc_oriente in arcs if sommet in (arc_oriente[0], arc_oriente[1])]
+                for arc_oriente in arcs_orientes_a_supprimer:
+                    canvas.delete(arc_oriente[2])  # Supprimer la ligne de l'arc orienté
+                    if len(arc_oriente) > 3:  # Supprimer l'étiquette associée, si présente
+                        canvas.delete(arc_oriente[3])
+                    arcs.remove(arc_oriente)  # Retirer l'arc orienté de la liste
+
+                # Supprimer le sommet des listes
+                del liste_sommets[i]
+                del cercles[i]
+                del textes_sommets[i]
                 print(f"Sommet {sommet} retiré.")
 
-                if not liste_sommets:  # Si la liste est vide après suppression
+                # Si tous les sommets sont supprimés
+                if not liste_sommets:
                     boite_message.showinfo("Notification", "Tous les sommets ont été supprimés.")
                     global nom_sommet_courant
-                    nom_sommet_courant = None  # Réinitialiser pour demander à l'utilisateur de réinitialiser
-                break
+                    nom_sommet_courant = None  # Réinitialiser pour un prochain ajout de sommet
 
+                break  # Arrêter la boucle après suppression
+
+    # Lier l'événement de clic au canvas
     canvas.bind("<Button-1>", lors_du_clic)
 
 def ajouter_arrete(canvas):
@@ -124,7 +133,7 @@ def ajouter_arrete(canvas):
         x, y = event.x, event.y
 
         for i, (sommet, (sx, sy)) in enumerate(liste_sommets):
-            if abs(sx - x) < 15 and abs(sy - y) < 15:
+            if abs(sx - x) < 25 and abs(sy - y) < 25:
                 selection_sommets.append((sommet, (sx, sy)))
 
                 if len(selection_sommets) == 2:
@@ -172,7 +181,7 @@ def ajouter_arrete(canvas):
     canvas.bind("<Button-1>", selectionner_sommet)
 
 def retirer_arrete(canvas):
-    if not arcs:  # Vérifier si la liste des arêtes est vide
+    if not arcs:  # Vérifier si la liste des arêtes est vide dès le début
         boite_message.showinfo("Notification", "Il n'y a plus d'arêtes à retirer.")
         return
 
@@ -181,44 +190,46 @@ def retirer_arrete(canvas):
     def selectionner_sommet_pour_supprimer(event):
         x, y = event.x, event.y
 
-        for sommet, (sx, sy) in liste_sommets:
+        # Rechercher si le clic est sur un sommet existant
+        for i, (sommet, (sx, sy)) in enumerate(liste_sommets):
             if abs(sx - x) < 15 and abs(sy - y) < 15:
-                selection_sommets.append(sommet)
+                selection_sommets.append((sommet, (sx, sy)))
 
-                if len(selection_sommets) == 2:  # Deux sommets sélectionnés
-                    sommet1, sommet2 = selection_sommets
+                # Si deux sommets sont sélectionnés, on tente de supprimer l'arête correspondante
+                if len(selection_sommets) == 2:
+                    sommet1, (x1, y1) = selection_sommets[0]
+                    sommet2, (x2, y2) = selection_sommets[1]
 
-                    # Rechercher et supprimer l'arête correspondante
-                    for arc in arcs:
-                        if (arc[0], arc[1]) == (sommet1, sommet2) or (arc[1], arc[0]) == (sommet1, sommet2):
-                            canvas.delete(arc[2])  # Supprimer la ligne
-                            
-                            # Supprimer l'étiquette associée
-                            etiquette = next((e for e, l in etiquettes_arretes if l == arc[2]), None)
-                            if etiquette:
-                                canvas.delete(etiquette)  # Supprimer l'étiquette du canvas
-                                etiquettes_arretes = [et for et in etiquettes_arretes if et[1] != arc[2]]
+                    # Chercher l'arête correspondante et la supprimer si elle existe
+                    for i, arrete in enumerate(arcs):
+                        if (arrete['sommet1'] == sommet1 and arrete['sommet2'] == sommet2) or \
+                           (arrete['sommet1'] == sommet2 and arrete['sommet2'] == sommet1):
 
-                            arcs.remove(arc)  # Supprimer l'arête
+                            # Supprimer la ligne de l'arête du canvas
+                            canvas.delete(arrete['ligne'])
+
+                            # Supprimer l'étiquette associée de l'arête sur le canvas
+                            canvas.delete(arrete['texte'])
+
+                            # Retirer l'arête de la liste
+                            arcs.pop(i)
+
                             print(f"Arête entre {sommet1} et {sommet2} supprimée.")
+
                             break
                     else:
                         boite_message.showerror("Erreur", "Aucune arête n'existe entre ces sommets.")
 
-                    selection_sommets.clear()
+                    selection_sommets.clear()  # Réinitialiser la sélection après chaque suppression
 
-                    if not arcs:  # Si toutes les arêtes sont supprimées
+                    # Vérifier s'il reste encore des arêtes après la suppression
+                    if not arcs:
                         boite_message.showinfo("Notification", "Toutes les arêtes ont été retirées.")
-                        canvas.unbind("<Button-1>")
+                        canvas.unbind("<Button-1>")  # Désactiver l'événement de suppression
                         return
 
+    # Liaison de l'événement de clic pour sélectionner les sommets
     canvas.bind("<Button-1>", selectionner_sommet_pour_supprimer)
-
-def supprimer_etiquette(ligne):
-    for etiquette, associee_ligne in etiquettes_arretes:
-        if associee_ligne == ligne:
-            etiquettes_arretes.remove((etiquette, associee_ligne))
-            break
 
 def calculer_nouvelle_extremite(x1, y1, x2, y2, distance):
     # Calculer le vecteur directionnel
@@ -283,43 +294,52 @@ def ajouter_arcs_orientes(canvas):
 
     canvas.bind("<Button-1>", selectionner_sommet)
 
-def retirer_arcs_orientes(canvas):
+def retirer_arcs_orientes(canvas): 
     if not arcs:  # Vérifier si la liste des arcs est vide
         boite_message.showinfo("Notification", "Il n'y a plus d'arcs orientés à retirer.")
         return
 
-    selection_sommets = []
+    selection_sommets = []  # Liste pour stocker les sommets sélectionnés
 
     def selectionner_sommet_pour_supprimer(event):
         x, y = event.x, event.y
 
+        # Rechercher si le clic est sur un sommet existant
         for i, (sommet, (sx, sy)) in enumerate(liste_sommets):
             if abs(sx - x) < 15 and abs(sy - y) < 15:
                 selection_sommets.append((sommet, (sx, sy)))
 
+                # Si deux sommets sont sélectionnés
                 if len(selection_sommets) == 2:
                     sommet1, (x1, y1) = selection_sommets[0]
                     sommet2, (x2, y2) = selection_sommets[1]
 
+                    # Chercher l'arc correspondant
                     for arc in arcs:
-                        if (arc[0], arc[1]) == (sommet1, sommet2):  # Arc orienté exact
+                        if arc[0] == sommet1 and arc[1] == sommet2:  # Arc orienté exact
                             canvas.delete(arc[2])  # Supprimer la ligne de l'arc
+                            
+                            # Vérifier si l'arc contient une étiquette avant de tenter de la supprimer
+                            if len(arc) > 3:  # Vérifier qu'il y a bien une étiquette
+                                canvas.delete(arc[3])  # Supprimer l'étiquette associée
 
-                            # Supprimer l'étiquette associée
-                            supprimer_etiquette(arc[2])
                             arcs.remove(arc)  # Retirer l'arc de la liste
                             print(f"Arc orienté de {sommet1} à {sommet2} supprimé.")
                             break
                     else:
+                        # Aucun arc correspondant n'a été trouvé
                         boite_message.showerror("Erreur", "Aucun arc orienté entre ces sommets.")
 
+                    # Réinitialiser la sélection
                     selection_sommets.clear()
 
+                    # Vérifier s'il reste encore des arcs après la suppression
                     if not arcs:
                         boite_message.showinfo("Notification", "Tous les arcs orientés ont été retirés.")
-                        canvas.unbind("<Button-1>")
+                        canvas.unbind("<Button-1>")  # Désactiver l'événement
                         return
 
+    # Lier l'événement de clic pour sélectionner les sommets
     canvas.bind("<Button-1>", selectionner_sommet_pour_supprimer)
 
 # Fonction pour créer une nouvelle fenêtre indépendante (lorsque l'utilisateur clique sur "Nouveau")
@@ -343,9 +363,6 @@ def nouveau_fichier():
     
 
     nouvelle_fenetre.mainloop()
-
-#Variable globale pour définir le type de graphe
-graphe_oriente = True  # True pour orienté, False pour non orienté
 
 # Fonction pour calculer et afficher la matrice d'adjacence
 def matrice_adjacence():
@@ -443,8 +460,6 @@ def afficher_matrice_incidence(matrice, titre, sommets, arcs=None):
             cell = Label(frame_matrice, text=valeur, width=6, height=2, relief="solid", bg=bg_color, font=("Arial", 12))
             cell.grid(row=i+1, column=j+1, sticky="nsew")
 
-
-
 def chaine_eulerienne():
     # Vérifier que le graphe contient au moins deux sommets et une arête
     if len(liste_sommets) < 2 or len(arcs) < 1:
@@ -520,7 +535,6 @@ def chaine_hamiltonienne():
 
     boite_message.showinfo("Information", "Pas de chaîne hamiltonienne trouvée.")
 
-
 def determiner_parcours_profondeurs():
     # Vérifier que le graphe contient au moins un sommet
     if not liste_sommets or not arcs:
@@ -560,22 +574,22 @@ def dessiner_arbre_couvrant(arbre):
     plt.title("Arbre couvrant basé sur le parcours en profondeur", fontsize=14)
     plt.show()
 
+def calculer_position_etiquette(x1, y1, x2, y2):
+    """Calcule la position de l'étiquette au milieu de l'arc ou arête."""
+    return (x1 + x2) / 2, (y1 + y2) / 2
 
 def ouvrir_fichier(canvas):
-    # Demander à l'utilisateur de choisir un fichier
     fichier = dialogue_fichier.askopenfilename(
         title="Ouvrir un fichier",
         filetypes=[("Python Files", "*.py"), ("All files", "*.*")]
     )
 
     if fichier:
-        # Vérifier l'extension du fichier
         if fichier.endswith('.py'):
-            # Ouvrir le fichier .py contenant les données du graphe
             with open(fichier, 'rb') as f:
                 data = pickle.load(f)
 
-            # Effacer les éléments actuels du canvas
+            # Réinitialiser le canvas
             for cercle in cercles:
                 canvas.delete(cercle)
             for texte in textes_sommets:
@@ -591,50 +605,40 @@ def ouvrir_fichier(canvas):
             arcs.clear()
             etiquettes_arretes.clear()
 
-            # Charger les sommets
-            for nom, (x, y) in data["sommets"]:
-                cercle = canvas.create_oval(x-10, y-10, x+10, y+10, fill="blue")
-                texte = canvas.create_text(x, y, text=nom, fill="white")
+            # Charger les sommets avec leurs couleurs
+            for nom, (x, y), couleur in data["sommets"]:
+
+                rayon = 20
+                cercle = canvas.create_oval(x - rayon, y - rayon, x + rayon, y + rayon, fill=couleur)
+                texte = canvas.create_text(x, y, text=nom, fill="black", font=("Arial", 12))
                 liste_sommets.append((nom, (x, y)))
                 cercles.append(cercle)
                 textes_sommets.append(texte)
 
-            # Vérifier si c'est un graphe orienté ou non
             graphe_oriente = data["graphe_oriente"]
 
-            # Charger les arêtes et leurs étiquettes
-            for s1, s2 in data["arcs"]:
+            # Charger les arêtes/arcs avec leurs couleurs
+            for s1, s2, couleur in data["arcs"]:
                 x1, y1 = next(pos for sommet, pos in liste_sommets if sommet == s1)
                 x2, y2 = next(pos for sommet, pos in liste_sommets if sommet == s2)
 
                 if graphe_oriente:
-                    # Pour un arc orienté, réduire la longueur de la flèche
-                    x2_reduit, y2_reduit = calculer_nouvelle_extremite(x1, y1, x2, y2, distance=20)
-
-                    # Dessiner l'arc orienté
+                    x1_ext, y1_ext = calculer_extremite(x1, y1, x2, y2, 20)
+                    x2_ext, y2_ext = calculer_extremite(x2, y2, x1, y1, 20)
                     ligne = canvas.create_line(
-                        x1, y1, x2_reduit, y2_reduit, fill="blue", width=2,
+                        x1_ext, y1_ext, x2_ext, y2_ext, fill=couleur, width=2,
                         arrow=LAST, arrowshape=(16, 20, 6)
                     )
                 else:
-                    # Pour une arête non orientée
-                    ligne = canvas.create_line(x1, y1, x2, y2, fill="black", width=2)
+                    ligne = canvas.create_line(x1, y1, x2, y2, fill=couleur, width=2)
 
                 arcs.append((s1, s2, ligne))
 
-            # Charger les étiquettes des arêtes
-            for etiquette, ligne in data["etiquettes_arretes"]:
-                # Trouver les coordonnées pour placer l'étiquette (au milieu de l'arête)
-                x1, y1 = next(pos for sommet, pos in liste_sommets if sommet == s1)
-                x2, y2 = next(pos for sommet, pos in liste_sommets if sommet == s2)
-                cx = (x1 + x2) / 2  # Position horizontale au milieu de l'arête
-                cy = (y1 + y2) / 2  # Position verticale au milieu de l'arête
-                decale_x, decale_y = 10, -10
-                texte = canvas.create_text(cx + decale_x, cy + decale_y, text=etiquette, font=("Arial", 10, "bold"))
+            # Charger les étiquettes
+            for etiquette, coords in data["etiquettes_arretes"]:
+                cx, cy = coords[:2]
+                texte = canvas.create_text(cx, cy, text=etiquette, font=("Arial", 10, "bold"))
                 etiquettes_arretes.append((etiquette, texte))
-
-        else:
-            boite_message.showerror("Erreur", "Format de fichier non pris en charge!")
 
 def ouvrir_image(fichier):
     img = Image.open(fichier)
@@ -647,7 +651,6 @@ def ouvrir_docx(fichier):
     os.startfile(fichier)  # Cela ouvrira le document Word dans le visualiseur par défaut
 
 def enregistrer_fichier(canvas, fenetre_actuelle):
-    # Vérifier que le graphe contient au moins deux sommets et une arête
     if len(liste_sommets) < 2 or len(arcs) < 1:
         boite_message.showinfo("Erreur", "Veuillez créer un graphe avec au moins deux sommets et une arête.")
         return
@@ -660,16 +663,21 @@ def enregistrer_fichier(canvas, fenetre_actuelle):
 
     if fenetre_actuelle.chemin_fichier:
         data = {
-            "sommets": [(nom, pos) for nom, pos in liste_sommets],
-            "arcs": [(s1, s2) for s1, s2, _ in arcs],
-            "etiquettes_arretes": [(etiquette, ligne) for etiquette, ligne in etiquettes_arretes],  # Enregistrer les étiquettes des arêtes
-            "graphe_oriente": graphe_oriente  # Enregistrer le type du graphe (orienté ou non)
+            "sommets": [
+                (nom, pos, canvas.itemcget(cercle, "fill"))  # Sauvegarde la couleur des sommets
+                for (nom, pos), cercle in zip(liste_sommets, cercles)
+            ],
+            "arcs": [
+                (s1, s2, canvas.itemcget(ligne, "fill"))  # Sauvegarde la couleur des arcs
+                for s1, s2, ligne in arcs
+            ],
+            "etiquettes_arretes": [(etiquette, canvas.coords(ligne)) for etiquette, ligne in etiquettes_arretes],
+            "graphe_oriente": graphe_oriente
         }
         with open(fenetre_actuelle.chemin_fichier, 'wb') as f:
             pickle.dump(data, f)
 
         boite_message.showinfo("Enregistrement réussi", f"Graphe enregistré sous : {fenetre_actuelle.chemin_fichier}")
-
 
 def enregistrer_sous(canvas, fenetre_actuelle):
     # Vérifier que le graphe contient au moins deux sommets et une arête
@@ -800,7 +808,7 @@ def creer_fenetre_principale(fenetre):
                                 menu=sous_menu_chaine)
 
     sous_menu_matrice_ma = Menu(menu_affichage , tearoff=0)
-    sous_menu_matrice_ma.add_command(label="Matrice adjacents", image=icon_ma, compound=LEFT , 
+    sous_menu_matrice_ma.add_command(label="Matrice adjacents", image=icon_ma, compound=LEFT ,
                                 command=matrice_adjacence, accelerator="Ctrl+J")
     sous_menu_matrice_ma.add_command(label="Matrice incidence", image=icon_mi, compound=LEFT , 
                        command=matrice_incidence , accelerator="Ctrl+I")

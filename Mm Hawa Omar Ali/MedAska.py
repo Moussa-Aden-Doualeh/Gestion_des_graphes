@@ -257,15 +257,6 @@ def afficher_graphe():
     plt.title("Graphe enregistré")
     plt.show()
 
-# Fonction pour vérifier si la position (x, y) est libre, c'est-à-dire
-# qu'elle n'est pas trop proche des autres sommets dans la liste.
-def position_libre(x, y, liste_sommets):
-    for (sx, sy, _) in liste_sommets:  # On ignore le nom du sommet (le 3ème élément)
-        # Vérifie si la distance entre (x, y) et le sommet existant est inférieure à 50
-        if abs(sx - x) < 50 and abs(sy - y) < 50:
-            return False  # La position est occupée par un autre sommet
-    return True  # La position est libre
-
 # Fonctions pour creer des sommets et des arretes .
 def creer_sommet():
     global creation_sommet, creation_arete
@@ -385,13 +376,9 @@ def canvas_click(event, canvas):
 
     # Mode création de sommet
     if creation_sommet:
-        # Vérifier si la position est libre avant d'ajouter un sommet
-        if position_libre(x, y, sommets):
-            nom_sommet = f"S{len(sommets) + 1}"  # Générer un nom unique pour le sommet
-            sommets.append((x, y, nom_sommet))  # Ajouter le sommet aux données
-            dessiner_graphe(canvas, current_tab)  # Redessiner le graphe
-        else:
-            boite_message.showinfo("Position Occupée", "Cette position est trop proche d'un autre sommet.")
+        nom_sommet = f"S{len(sommets) + 1}"  # Générer un nom unique pour le sommet
+        sommets.append((x, y, nom_sommet))  # Ajouter le sommet aux données
+        dessiner_graphe(canvas, current_tab)  # Redessiner le graphe
 
     # Mode création d'arête
     elif creation_arete:
@@ -667,25 +654,15 @@ def matrice_incidence():
 
     n_sommets = len(sommets)
     n_aretes = len(aretes)
-    
-    # Initialisation de la matrice d'incidence avec des zéros
     matrice = [[0] * n_aretes for _ in range(n_sommets)]
 
     # Utiliser le troisième élément des sommets pour récupérer leurs vrais noms
-    noms_sommets = [sommet[2] for sommet in sommets]  # Noms des sommets
-    noms_arcs = [arete[3] for arete in aretes]  # Noms des arêtes
-
-    # Parcours des arêtes pour remplir la matrice
+    noms_sommets = [sommet[2] for sommet in sommets]
+    noms_arcs = [arete[3] for arete in aretes]
+    
     for j, (s1, s2, orientee, _) in enumerate(aretes):
-        if orientee:
-            # Si l'arc est orienté, l'élément correspondant pour s1 sera -1 (sortant)
-            # et pour s2 sera 1 (entrant)
-            matrice[s1][j] = -1  # Arc sortant de s1
-            matrice[s2][j] = 1   # Arc entrant dans s2
-        else:
-            # Si l'arc est non orienté, on met 1 pour les deux sommets (relation bidirectionnelle)
-            matrice[s1][j] = 1  # Arc entre s1 et s2
-            matrice[s2][j] = 1  # Arc entre s2 et s1
+        matrice[s1][j] = 1
+        matrice[s2][j] = -1 if orientee else 1
 
     afficher_matrice_incidence(matrice, "Matrice d'Incidence", noms_sommets, noms_arcs)
 

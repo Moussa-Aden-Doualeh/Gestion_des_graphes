@@ -29,7 +29,7 @@ def incrementer_nom_sommet():
 
 def position_libre(x, y, liste_sommets):
     for sommet, (sx, sy) in liste_sommets:
-        if (abs(sx - x) < 60 and abs(sy - y) < 60):
+        if (abs(sx - x) < 50 and abs(sy - y) < 50):
             return False
     return True
 
@@ -101,7 +101,6 @@ def retirer_sommet(canvas):
                 break
 
     canvas.bind("<Button-1>", lors_du_clic)
-
 
 # Fonction pour ajouter une arête
 def ajouter_arrete(canvas):
@@ -250,6 +249,7 @@ def matrice_adjacence():
 
     # Affichage de la matrice d'adjacence avec les noms des sommets
     afficher_matrice_adjacente(matrice, "Matrice d'Adjacence", [sommets[0] for sommets in liste_sommets])
+
 # Fonction pour afficher les matrices dans le frame de droite
 def afficher_matrice_adjacente(matrice, titre, sommets):
     # Effacer l'ancienne matrice
