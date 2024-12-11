@@ -470,6 +470,169 @@ def creer_arete_oriente():
     else:
         boite_message.showerror("Erreur", "Ce graphe est défini comme non orienté. Veuillez continuer avec des arêtes non orientées.")
 
+def retirer_arrets_orienter():
+    """
+    Fonction pour supprimer une arête orientée entre deux sommets sélectionnés.
+    Vérifie d'abord si le graphe contient des arêtes orientées avant de procéder.
+    """
+    global tab_data, sommet_selectionne_temp
+
+    # Récupérer l'onglet actif et ses données
+    current_tab = notebook.nametowidget(notebook.select())
+    if current_tab not in tab_data:
+        boite_message.showerror("Erreur", "Aucun graphe actif dans cet onglet.")
+        return
+
+    data = tab_data[current_tab]
+    sommets = data['sommets']
+    aretes = data['aretes']
+    canvas = data['canvas']
+
+    # Vérification : s'assurer que le graphe contient des arêtes orientées
+    def verifier_graphe_oriente(aretes):
+        return any(orientee for _, _, orientee, _ in aretes)
+
+    if not verifier_graphe_oriente(aretes):
+        boite_message.showerror("Erreur", "Le graphe n'est pas orienté ou ne contient aucune arête orientée.")
+        return
+
+    # Vérification : s'assurer qu'il existe des arêtes à supprimer
+    if not aretes:
+        boite_message.showinfo("Notification", "Il n'y a plus d'arêtes à retirer.")
+        return
+
+    # Liste temporaire pour stocker les sommets sélectionnés
+    sommet_selectionne_temp = []
+
+    def selectionner_sommet(event):
+        """
+        Sélectionne un sommet sur le canevas en cliquant.
+        """
+        x, y = event.x, event.y
+
+        # Trouver le sommet le plus proche du clic
+        for i, (sx, sy, nom) in enumerate(sommets):
+            if ((sx - x) ** 2 + (sy - y) ** 2) ** 0.5 <= 20:  # Rayon du sommet
+                sommet_selectionne_temp.append(i)
+                boite_message.showinfo("Sélection", f"Sommet {nom} sélectionné.")
+                break
+
+        # Si deux sommets sont sélectionnés, tenter de supprimer l'arête correspondante
+        if len(sommet_selectionne_temp) == 2:
+            sommet1, sommet2 = sommet_selectionne_temp
+            supprimer_arrete(sommet1, sommet2)
+            sommet_selectionne_temp.clear()  # Réinitialiser après traitement
+
+    def supprimer_arrete(sommet1, sommet2):
+        """
+        Supprime une arête orientée entre deux sommets si elle existe.
+        """
+        for i, (s1, s2, orientee, ids_canvas) in enumerate(aretes):
+            if orientee and s1 == sommet1 and s2 == sommet2:
+                # Vérifier si l'identifiant contient la ligne et le texte
+                if isinstance(ids_canvas, dict) and "ligne" in ids_canvas and "texte" in ids_canvas:
+                    # Supprimer graphiquement les objets du canvas
+                    canvas.delete(ids_canvas["ligne"])
+                    canvas.delete(ids_canvas["texte"])
+
+                # Supprimer l'arête de la liste
+                aretes.pop(i)
+
+                # Mettre à jour le canvas après suppression
+                dessiner_graphe(canvas, current_tab)
+
+                boite_message.showinfo("Succès", f"L'arête orientée de {sommets[s1][2]} vers {sommets[s2][2]} a été supprimée.")
+                return
+
+        # Si aucune arête orientée n'existe entre les sommets sélectionnés
+        boite_message.showerror("Erreur", "Aucune arête orientée n'existe entre ces sommets.")
+
+    # Liaison de l'événement pour sélectionner les sommets
+    canvas.bind("<Button-1>", selectionner_sommet)
+
+def retirer_sommet():
+    """
+    Fonction pour supprimer un sommet sélectionné et toutes les arêtes associées (orientées ou non orientées).
+    """
+    global tab_data, sommet_selectionne_temp
+
+    # Récupérer l'onglet actif et ses données
+    current_tab = notebook.nametowidget(notebook.select())
+    if current_tab not in tab_data:
+        boite_message.showerror("Erreur", "Aucun graphe actif dans cet onglet.")
+        return
+
+    data = tab_data[current_tab]
+    sommets = data['sommets']
+    aretes = data['aretes']
+    canvas = data['canvas']
+
+    # Liste temporaire pour stocker le sommet sélectionné
+    sommet_selectionne_temp = []
+
+    def selectionner_sommet(event):
+        """
+        Sélectionne un sommet sur le canevas en cliquant et procède à sa suppression.
+        """
+        x, y = event.x, event.y
+
+        # Trouver le sommet le plus proche du clic
+        for i, (sx, sy, nom) in enumerate(sommets):
+            if ((sx - x) ** 2 + (sy - y) ** 2) ** 0.5 <= 20:  # Rayon du sommet
+                sommet_selectionne_temp.append(i)
+                boite_message.showinfo("Sélection", f"Sommet {nom} sélectionné pour suppression.")
+                break
+
+        if sommet_selectionne_temp:
+            sommet_a_supprimer = sommet_selectionne_temp.pop()
+            supprimer_sommet(sommet_a_supprimer)
+
+    def supprimer_sommet(sommet_index):
+        """
+        Supprime un sommet et toutes les arêtes associées.
+        """
+        # Vérifier que le sommet existe
+        if sommet_index >= len(sommets):
+            boite_message.showerror("Erreur", "Le sommet sélectionné est invalide.")
+            return
+
+        # Supprimer toutes les arêtes associées au sommet
+        aretes_a_supprimer = []
+        for i, (s1, s2, _, ids_canvas) in enumerate(aretes):
+            if s1 == sommet_index or s2 == sommet_index:
+                # Supprimer graphiquement les objets associés à l'arête
+                if isinstance(ids_canvas, dict):
+                    canvas.delete(ids_canvas.get("ligne", ""))
+                    canvas.delete(ids_canvas.get("texte", ""))
+                aretes_a_supprimer.append(i)
+
+        # Supprimer les arêtes de la liste
+        for i in sorted(aretes_a_supprimer, reverse=True):
+            del aretes[i]
+
+        # Supprimer le sommet du canevas
+        sx, sy, nom = sommets[sommet_index]
+        canvas.delete(nom)  # Supprimer le nom du sommet
+        canvas.delete(f"sommet_{sommet_index}")  # Supprimer le cercle du sommet
+
+        # Supprimer le sommet de la liste
+        sommets.pop(sommet_index)
+
+        # Mettre à jour les indices des arêtes et des sommets restants
+        for i, (s1, s2, orientee, ids_canvas) in enumerate(aretes):
+            if s1 > sommet_index:
+                aretes[i] = (s1 - 1, s2, orientee, ids_canvas)
+            if s2 > sommet_index:
+                aretes[i] = (s1, s2 - 1, orientee, ids_canvas)
+
+        boite_message.showinfo("Succès", f"Sommet {nom} et ses arêtes associées ont été supprimés.")
+
+        # Mettre à jour le canvas après suppression
+        dessiner_graphe(canvas, current_tab)
+
+    # Liaison de l'événement pour sélectionner un sommet
+    canvas.bind("<Button-1>", selectionner_sommet)
+
 # Fonction pour creer une graphe non orientée
 def creer_arete_non_oriente():
     global creation_sommet, creation_arete, arete_orientee, graphe_orientee
@@ -481,56 +644,85 @@ def creer_arete_non_oriente():
     else:
         boite_message.showerror("Erreur", "Ce graphe est défini comme orienté. Veuillez continuer avec des arêtes orientées.")
 
-def retirer_arrete_non_oriente(event, canvas, current_tab):
+def retirer_arrets_non_orienter():
     """
-    Fonction pour sélectionner deux sommets en cliquant sur le canvas et retirer une arête non orientée entre eux.
+    Fonction pour supprimer une arête non orientée entre deux sommets sélectionnés.
+    Vérifie d'abord si le graphe est non orienté avant de procéder.
     """
-    global sommet_selectionne_temp
+    global tab_data, sommet_selectionne_temp
 
-    # Récupérer les données du graphe
+    # Récupérer l'onglet actif et ses données
+    current_tab = notebook.nametowidget(notebook.select())
+    if current_tab not in tab_data:
+        boite_message.showerror("Erreur", "Aucun graphe actif dans cet onglet.")
+        return
+
     data = tab_data[current_tab]
     sommets = data['sommets']
     aretes = data['aretes']
-    orientee = data.get('orientee', None)
+    canvas = data['canvas']
 
-    # Récupérer la position du clic
-    x, y = event.x, event.y
+    # Vérification : s'assurer que le graphe est non orienté
+    def verifier_graphe_non_oriente(aretes):
+        return all(not orientee for _, _, orientee, _ in aretes)
 
-    # Trouver le sommet le plus proche du clic
-    for i, (sx, sy, nom) in enumerate(sommets):
-        if ((sx - x) ** 2 + (sy - y) ** 2) ** 0.5 <= 20:  # Rayon du sommet
-            sommet_selectionne_temp.append(i)
-            boite_message.showinfo("Sélection", f"Sommet {nom} sélectionné.")
-            break
+    if not verifier_graphe_non_oriente(aretes):
+        boite_message.showerror("Erreur", "Le graphe est orienté ou ne contient aucune arête non orientée.")
+        return
 
-    # Si deux sommets sont sélectionnés, retirer l'arête entre eux
-    if len(sommet_selectionne_temp) == 2:
-        sommet1, sommet2 = sommet_selectionne_temp
-        # Vérifier si le graphe est orienté
-        if orientee is True:
-            boite_message.showerror("Erreur", "Le graphe est orienté. Impossible de supprimer une arête non orientée.")
+    # Vérification : s'assurer qu'il existe des arêtes à supprimer
+    if not aretes:
+        boite_message.showinfo("Notification", "Il n'y a plus d'arêtes à retirer.")
+        return
+
+    # Liste temporaire pour stocker les sommets sélectionnés
+    sommet_selectionne_temp = []
+
+    def selectionner_sommet(event):
+        """
+        Sélectionne un sommet sur le canevas en cliquant.
+        """
+        x, y = event.x, event.y
+
+        # Trouver le sommet le plus proche du clic
+        for i, (sx, sy, nom) in enumerate(sommets):
+            if ((sx - x) ** 2 + (sy - y) ** 2) ** 0.5 <= 20:  # Rayon du sommet
+                sommet_selectionne_temp.append(i)
+                boite_message.showinfo("Sélection", f"Sommet {nom} sélectionné.")
+                break
+
+        # Si deux sommets sont sélectionnés, tenter de supprimer l'arête correspondante
+        if len(sommet_selectionne_temp) == 2:
+            sommet1, sommet2 = sommet_selectionne_temp
+            supprimer_arrete(sommet1, sommet2)
             sommet_selectionne_temp.clear()  # Réinitialiser après traitement
-            return
 
-        # Vérifier si les sommets sont valides
-        if sommet1 >= len(sommets) or sommet2 >= len(sommets):
-            boite_message.showerror("Erreur", "Les sommets spécifiés sont invalides.")
-            sommet_selectionne_temp.clear()  # Réinitialiser après traitement
-            return
+    def supprimer_arrete(sommet1, sommet2):
+        """
+        Supprime une arête entre deux sommets si elle existe.
+        """
+        for i, (s1, s2, orientee, ids_canvas) in enumerate(aretes):
+            if (s1 == sommet1 and s2 == sommet2) or (s1 == sommet2 and s2 == sommet1):
+                # Vérifier si l'identifiant contient la ligne et le texte
+                if isinstance(ids_canvas, dict) and "ligne" in ids_canvas and "texte" in ids_canvas:
+                    # Supprimer graphiquement les objets du canvas
+                    canvas.delete(ids_canvas["ligne"])
+                    canvas.delete(ids_canvas["texte"])
 
-        # Rechercher et supprimer l'arête non orientée
-        for i, (s1, s2, est_orientee, nom_arete) in enumerate(aretes):
-            if not est_orientee and ((s1 == sommet1 and s2 == sommet2) or (s1 == sommet2 and s2 == sommet1)):
-                # Supprimer l'arête
-                del aretes[i]
+                # Supprimer l'arête de la liste
+                aretes.pop(i)
+
+                # Mettre à jour le canvas après suppression
                 dessiner_graphe(canvas, current_tab)
-                boite_message.showinfo("Succès", f"L'arête non orientée entre {sommets[s1][2]} et {sommets[s2][2]} a été supprimée.")
-                sommet_selectionne_temp.clear()  # Réinitialiser après traitement
+
+                boite_message.showinfo("Succès", f"L'arête entre {sommets[s1][2]} et {sommets[s2][2]} a été supprimée.")
                 return
 
-        # Aucune arête non orientée trouvée
-        boite_message.showerror("Erreur", f"Aucune arête non orientée entre {sommets[sommet1][2]} et {sommets[sommet2][2]}.")
-        sommet_selectionne_temp.clear()  # Réinitialiser après traitement
+        # Si aucune arête n'existe entre les sommets sélectionnés
+        boite_message.showerror("Erreur", "Aucune arête n'existe entre ces sommets.")
+
+    # Liaison de l'événement pour sélectionner les sommets
+    canvas.bind("<Button-1>", selectionner_sommet)
 
 # Fonction pour afficher la chaine eulerienne .
 def afficher_chaine_eulerienne():
@@ -623,9 +815,6 @@ def afficher_chaine_hamiltonienne():
 
     label_message = Label(cadre_message, text=message, bg="#FFFFFF", font=("Arial", 10), wraplength=400, justify="left", relief="solid", padx=10, pady=5)
     label_message.pack()
-
-
-import networkx as nx
 
 def chemin_entre_deux_sommets():
     """
@@ -1273,6 +1462,7 @@ menu_fichier.add_command(label="Quitter",image=icon_quitter , compound=LEFT, com
 # Menu Création
 sous_menu_sommet = Menu(menu_creation, tearoff=0)
 sous_menu_sommet.add_command(label="Ajouter Un Sommet",image=icon_sommet ,command= creer_sommet ,compound=LEFT , accelerator="Ctrl+L" )
+sous_menu_sommet.add_command(label="Retirer Un Sommet",compound=LEFT,command=retirer_sommet)
 menu_creation.add_cascade(label="Sommet", image=icon_sommet, compound=LEFT, menu=sous_menu_sommet)
 
 # Sous-menu Arête
@@ -1281,13 +1471,13 @@ sous_menu_arret = Menu(menu_creation, tearoff=0)
 # Sous-menu pour les arêtes orientées
 sous_menu_arret_orientee = Menu(sous_menu_arret, tearoff=0)
 sous_menu_arret_orientee.add_command(label="Ajouter une arête orientée",image=icon_arret ,command=creer_arete_oriente,compound=LEFT , accelerator="Ctrl+M")
-
+sous_menu_arret_orientee.add_command(label="Retirer une arête orientée",compound=LEFT,command=retirer_arrets_orienter)
 
 
 # Sous-menu pour les arêtes non orientées
 sous_menu_arret_non_orientee = Menu(sous_menu_arret, tearoff=0)
 sous_menu_arret_non_orientee.add_command(label="Ajouter une arête non orientée",image=icon_arret ,command=creer_arete_non_oriente,compound=LEFT ,accelerator="Ctrl+B")
-sous_menu_arret_non_orientee.add_command(label="Retirer une arête non orientée",compound=LEFT,command=lambda: retirer_arrete_non_oriente(canvas, notebook.nametowidget(notebook.select()), liste_sommets))
+sous_menu_arret_non_orientee.add_command(label="Retirer une arête non orientée",compound=LEFT,command=retirer_arrets_non_orienter)
 
 
 # Ajouter les options des arêtes au menu principal
