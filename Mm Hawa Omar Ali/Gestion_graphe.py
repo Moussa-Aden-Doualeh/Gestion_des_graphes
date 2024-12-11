@@ -755,6 +755,7 @@ try:
     icon_mi = ImageTk.PhotoImage(Image.open("Icons/MI.png").resize((20, 20)))
 
     #ma = pour matrice adjacente et mi = pour matrice incidence .
+    
 
 except Exception as e:
     print(f"Erreur lors du chargement des icônes : {e}")
